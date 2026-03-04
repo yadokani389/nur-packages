@@ -1,0 +1,98 @@
+{
+  lib,
+  rustPlatform,
+  stdenv,
+  pkg-config,
+  cmake,
+  openssl,
+  llvmPackages,
+  extra-cmake-modules,
+  fcitx5,
+  libxkbcommon,
+  fetchFromGitHub,
+}:
+
+let
+  version = "0.1.0";
+
+  src = fetchFromGitHub {
+    owner = "togatoga";
+    repo = "karukan";
+    rev = "v${version}";
+    hash = "sha256-nC50n93BrfNOQSrWm/z9jbFG9iCgC+6wT6fustd/YWo=";
+  };
+
+  karukan-im-rust = rustPlatform.buildRustPackage {
+    pname = "karukan-im-rust";
+    inherit version src;
+
+    cargoLock.lockFile = "${src}/Cargo.lock";
+
+    nativeBuildInputs = [
+      pkg-config
+      cmake
+      rustPlatform.bindgenHook
+      llvmPackages.libclang
+    ];
+
+    buildInputs = [
+      openssl
+    ];
+
+    LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";
+
+    cargoBuildFlags = [
+      "-p"
+      "karukan-im"
+    ];
+
+    cargoTestFlags = [
+      "-p"
+      "karukan-im"
+    ];
+
+    meta = with lib; {
+      description = "Karukan Rust IME core library";
+      homepage = "https://github.com/togatoga/karukan";
+      license = with licenses; [
+        mit
+        asl20
+      ];
+      platforms = platforms.linux;
+    };
+  };
+in
+
+stdenv.mkDerivation {
+  pname = "karukan-fcitx5-addon";
+  inherit version src;
+  sourceRoot = "${src.name}/karukan-im/fcitx5-addon";
+
+  nativeBuildInputs = [
+    cmake
+    pkg-config
+    extra-cmake-modules
+  ];
+
+  buildInputs = [
+    fcitx5
+    libxkbcommon
+  ];
+
+  postPatch = ''
+    substituteInPlace CMakeLists.txt \
+      --replace-fail 'find_program(CARGO cargo REQUIRED)' 'set(CARGO "${stdenv.shell}")' \
+      --replace-fail 'set(KARUKAN_RUST_LIB "''${CMAKE_CURRENT_SOURCE_DIR}/../../target/release/libkarukan_im.so")' 'set(KARUKAN_RUST_LIB "${karukan-im-rust}/lib/libkarukan_im.so")' \
+      --replace-fail '    COMMAND ''${CARGO} build --release -p karukan-im' '    COMMAND ''${CARGO} -c true'
+  '';
+
+  meta = with lib; {
+    description = "Karukan fcitx5 addon";
+    homepage = "https://github.com/togatoga/karukan";
+    license = with licenses; [
+      mit
+      asl20
+    ];
+    platforms = platforms.linux;
+  };
+}
