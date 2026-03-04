@@ -15,38 +15,36 @@
   };
 
   outputs =
-    inputs@{ flake-parts, nixpkgs, ... }:
+    inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = with inputs; [
         treefmt-nix.flakeModule
         git-hooks.flakeModule
       ];
 
-      systems = nixpkgs.lib.systems.flakeExposed;
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
 
       flake = {
-        legacyPackages = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (
-          system:
-          import ./default.nix {
-            pkgs = import nixpkgs { inherit system; };
-          }
-        );
+        lib = import ./lib;
+        nixosModules = import ./modules;
+        overlays = import ./overlays;
       };
 
       perSystem =
         { config, pkgs, ... }:
         let
-          reservedNames = [
-            "lib"
-            "modules"
-            "overlays"
-          ];
-          packages = pkgs.lib.filterAttrs (name: _: !(builtins.elem name reservedNames)) (
+          packages = pkgs.lib.filterAttrs (_: v: pkgs.lib.isDerivation v) (
             import ./default.nix { inherit pkgs; }
           );
         in
         {
-          packages = pkgs.lib.filterAttrs (_: v: pkgs.lib.isDerivation v) packages;
+          inherit packages;
+
+          checks = packages;
 
           devShells.default = pkgs.mkShell {
             inputsFrom = [
