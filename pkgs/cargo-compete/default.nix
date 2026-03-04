@@ -5,6 +5,7 @@
   pkg-config,
   openssl,
 }:
+
 rustPlatform.buildRustPackage rec {
   pname = "cargo-compete";
   version = "0.10.7";

@@ -21,4 +21,9 @@
   fcitx5-hazkey = pkgs.callPackage ./pkgs/fcitx5-hazkey { };
   hazkey-zenzai = pkgs.callPackage ./pkgs/hazkey-zenzai { };
   karukan-im = pkgs.callPackage ./pkgs/karukan-im { };
+
+  # vim
+  lsp-endhints = pkgs.callPackage ./pkgs/lsp-endhints { };
+  tiny-code-action-nvim = pkgs.callPackage ./pkgs/tiny-code-action-nvim { };
+  vim-translator = pkgs.callPackage ./pkgs/vim-translator { };
 }
