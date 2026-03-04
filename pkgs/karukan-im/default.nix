@@ -52,7 +52,7 @@ let
     ];
 
     meta = with lib; {
-      description = "Karukan Rust IME core library";
+      description = "Japanese Input Method System for Linux, Neural Kana-Kanji Conversion Engine + fcitx5 IME";
       homepage = "https://github.com/togatoga/karukan";
       license = with licenses; [
         mit
@@ -87,7 +87,7 @@ stdenv.mkDerivation {
   '';
 
   meta = with lib; {
-    description = "Karukan fcitx5 addon";
+    description = "Japanese Input Method System for Linux, Neural Kana-Kanji Conversion Engine + fcitx5 IME";
     homepage = "https://github.com/togatoga/karukan";
     license = with licenses; [
       mit

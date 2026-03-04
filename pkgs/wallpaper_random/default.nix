@@ -1,4 +1,5 @@
 {
+  lib,
   writeShellScriptBin,
   symlinkJoin,
   makeWrapper,
@@ -44,4 +45,11 @@ symlinkJoin {
   ];
   buildInputs = [ makeWrapper ];
   postBuild = "wrapProgram $out/bin/wallpaper_random --prefix PATH : $out/bin";
+
+  meta = with lib; {
+    description = "Set random wallpapers for all outputs using swww";
+    license = licenses.mit;
+    mainProgram = "wallpaper_random";
+    platforms = platforms.linux;
+  };
 }

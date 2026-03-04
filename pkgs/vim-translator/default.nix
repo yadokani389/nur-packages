@@ -1,4 +1,5 @@
 {
+  lib,
   vimUtils,
   fetchFromGitHub,
 }:
@@ -12,5 +13,12 @@ vimUtils.buildVimPlugin {
     repo = "vim-translator";
     rev = "6f0639c6d471a3a90ac19db96e1e379c030f74e3";
     hash = "sha256-ow5axYMtH433hXwYF5Oz3wWT/24VUHpALrH+Phlwk90=";
+  };
+
+  meta = with lib; {
+    description = ":closed_book: Translating plugin for Vim/Neovim";
+    homepage = "https://github.com/voldikss/vim-translator";
+    license = licenses.mit;
+    platforms = platforms.all;
   };
 }

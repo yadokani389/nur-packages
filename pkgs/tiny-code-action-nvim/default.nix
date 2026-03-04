@@ -1,4 +1,5 @@
 {
+  lib,
   vimUtils,
   fetchFromGitHub,
   vimPlugins,
@@ -20,4 +21,11 @@ vimUtils.buildVimPlugin {
     plenary-nvim
     snacks-nvim
   ];
+
+  meta = with lib; {
+    description = "A Neovim plugin that provides a simple way to run and visualize code actions with Telescope.";
+    homepage = "https://github.com/rachartier/tiny-code-action.nvim";
+    license = licenses.mit;
+    platforms = platforms.all;
+  };
 }

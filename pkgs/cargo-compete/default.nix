@@ -25,12 +25,13 @@ rustPlatform.buildRustPackage rec {
   doCheck = false;
 
   meta = {
-    description = " A Cargo subcommand for competitive programming";
+    description = "A Cargo subcommand for competitive programming";
     homepage = "https://github.com/qryxip/cargo-compete";
     license = with lib.licenses; [
       asl20
       mit
     ];
-    maintainers = [ ];
+    mainProgram = "cargo-compete";
+    platforms = lib.platforms.all;
   };
 }
