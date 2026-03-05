@@ -21,6 +21,7 @@
   fcitx5-hazkey = pkgs.callPackage ./pkgs/fcitx5-hazkey { };
   hazkey-zenzai = pkgs.callPackage ./pkgs/hazkey-zenzai { };
   karukan-im = pkgs.callPackage ./pkgs/karukan-im { };
+  sptlrx-ex = pkgs.callPackage ./pkgs/sptlrx-ex { };
 
   # vim
   lsp-endhints = pkgs.callPackage ./pkgs/lsp-endhints { };
