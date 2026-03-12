@@ -16,10 +16,10 @@ let
   version = "0.1.0";
 
   src = fetchFromGitHub {
-    owner = "togatoga";
+    owner = "yadokani389";
     repo = "karukan";
-    rev = "v${version}";
-    hash = "sha256-nC50n93BrfNOQSrWm/z9jbFG9iCgC+6wT6fustd/YWo=";
+    rev = "45ff128f81423cc7430bb2c9493487aa71dcc6de";
+    hash = "sha256-24gq0OI8NJx2jdgvnrEQk5bx76RFrnxVbqJotO4u9Ew=";
   };
 
   karukan-im-rust = rustPlatform.buildRustPackage {
@@ -53,7 +53,7 @@ let
 
     meta = with lib; {
       description = "Japanese Input Method System for Linux, Neural Kana-Kanji Conversion Engine + fcitx5 IME";
-      homepage = "https://github.com/togatoga/karukan";
+      homepage = "https://github.com/yadokani389/karukan";
       license = with licenses; [
         mit
         asl20
@@ -88,7 +88,7 @@ stdenv.mkDerivation {
 
   meta = with lib; {
     description = "Japanese Input Method System for Linux, Neural Kana-Kanji Conversion Engine + fcitx5 IME";
-    homepage = "https://github.com/togatoga/karukan";
+    homepage = "https://github.com/yadokani389/karukan";
     license = with licenses; [
       mit
       asl20
