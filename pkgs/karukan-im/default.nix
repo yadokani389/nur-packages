@@ -10,6 +10,7 @@
   fcitx5,
   libxkbcommon,
   fetchFromGitHub,
+  fetchurl,
 }:
 
 let
@@ -18,8 +19,22 @@ let
   src = fetchFromGitHub {
     owner = "yadokani389";
     repo = "karukan";
-    rev = "45ff128f81423cc7430bb2c9493487aa71dcc6de";
-    hash = "sha256-24gq0OI8NJx2jdgvnrEQk5bx76RFrnxVbqJotO4u9Ew=";
+    rev = "2eee5cb2cc5338d35bed06588211ac845368e263";
+    hash = "sha256-J4Q+ubaqSWFP7gJYy86Twv4lzkz9VzbRxhoTSCDzt2I=";
+  };
+
+  linderaVersion =
+    (builtins.head (
+      builtins.filter (p: p.name == "lindera")
+        (builtins.fromTOML (builtins.readFile "${src}/Cargo.lock")).package
+    )).version;
+
+  lindera-ipadic = rec {
+    filename = "mecab-ipadic-2.7.0-20250920.tar.gz";
+    source = fetchurl {
+      url = "https://lindera.dev/${filename}";
+      hash = "sha256-p7qfZF/+cJTlauHEqB0QDfj7seKLvheSYi6XKOFi2z0=";
+    };
   };
 
   karukan-im-rust = rustPlatform.buildRustPackage {
@@ -37,6 +52,7 @@ let
 
     buildInputs = [
       openssl
+      libxkbcommon
     ];
 
     LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";
@@ -50,6 +66,12 @@ let
       "-p"
       "karukan-im"
     ];
+
+    preConfigure = ''
+      export LINDERA_DICTIONARIES_PATH=$TMPDIR/lindera-cache
+      mkdir -p $LINDERA_DICTIONARIES_PATH/${linderaVersion}
+      cp ${lindera-ipadic.source} $LINDERA_DICTIONARIES_PATH/${linderaVersion}/${lindera-ipadic.filename}
+    '';
 
     meta = with lib; {
       description = "Japanese Input Method System for Linux, Neural Kana-Kanji Conversion Engine + fcitx5 IME";
