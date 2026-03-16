@@ -17,6 +17,7 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   wallpaper_random = pkgs.callPackage ./pkgs/wallpaper_random { };
+  wf-recorder-toggle = pkgs.callPackage ./pkgs/wf-recorder-toggle { };
   cargo-compete = pkgs.callPackage ./pkgs/cargo-compete { };
   fcitx5-hazkey = pkgs.callPackage ./pkgs/fcitx5-hazkey { };
   hazkey-zenzai = pkgs.callPackage ./pkgs/hazkey-zenzai { };
