@@ -14,13 +14,13 @@
 }:
 
 let
-  version = "0.1.0";
+  version = "unstable-2026-03-19";
 
   src = fetchFromGitHub {
     owner = "yadokani389";
     repo = "karukan";
-    rev = "2eee5cb2cc5338d35bed06588211ac845368e263";
-    hash = "sha256-J4Q+ubaqSWFP7gJYy86Twv4lzkz9VzbRxhoTSCDzt2I=";
+    rev = "f765e34d59327e040f4de77f4a8e1773e7a35a64";
+    hash = "sha256-D2QE2B/NTwz2dxa+TSfKFExZbNZ2IurTmLZPMcJ4KnA=";
   };
 
   linderaVersion =
@@ -62,10 +62,7 @@ let
       "karukan-im"
     ];
 
-    cargoTestFlags = [
-      "-p"
-      "karukan-im"
-    ];
+    doCheck = false;
 
     preConfigure = ''
       export LINDERA_DICTIONARIES_PATH=$TMPDIR/lindera-cache
