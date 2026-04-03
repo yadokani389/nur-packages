@@ -1,7 +1,7 @@
 {
   lib,
   writeShellApplication,
-  swww,
+  awww,
   coreutils,
   findutils,
 }:
@@ -9,7 +9,7 @@ writeShellApplication {
   name = "wallpaper_random";
 
   runtimeInputs = [
-    swww
+    awww
     coreutils
     findutils
   ];
@@ -96,10 +96,10 @@ writeShellApplication {
         if [[ "$info_line" == *'currently displaying: image: '* ]]; then
           current_image_paths+=("''${info_line#*currently displaying: image: }")
         fi
-      done < <(swww query)
+      done < <(awww query)
 
       if ((''${#outputs[@]} == 0)); then
-        printf 'No outputs returned by swww query\n' >&2
+        printf 'No outputs returned by awww query\n' >&2
         exit 1
       fi
     }
@@ -168,14 +168,14 @@ writeShellApplication {
 
       for i in "''${!outputs[@]}"; do
         if [[ "$dry_run" == true || "$verbose" == true ]]; then
-          printf 'swww img %q -t %q -o %q\n' \
+          printf 'awww img %q -t %q -o %q\n' \
             "''${assigned_image_paths[i]}" \
             "''${assigned_transition_types[i]}" \
             "''${outputs[i]}"
         fi
 
         if [[ "$dry_run" == false ]]; then
-          swww img \
+          awww img \
             "''${assigned_image_paths[i]}" \
             -t "''${assigned_transition_types[i]}" \
             -o "''${outputs[i]}"
@@ -199,7 +199,7 @@ writeShellApplication {
   '';
 
   meta = with lib; {
-    description = "Set random wallpapers for all outputs using swww";
+    description = "Set random wallpapers for all outputs using awww";
     license = licenses.mit;
     mainProgram = "wallpaper_random";
     platforms = platforms.linux;
