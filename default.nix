@@ -24,6 +24,7 @@
   karukan-im = pkgs.callPackage ./pkgs/karukan-im { };
   sptlrx-ex = pkgs.callPackage ./pkgs/sptlrx-ex { };
   textlint-plugin-typst = pkgs.callPackage ./pkgs/textlint-plugin-typst { };
+  pahcer = pkgs.callPackage ./pkgs/pahcer { };
 
   # vim
   lsp-endhints = pkgs.callPackage ./pkgs/lsp-endhints { };
