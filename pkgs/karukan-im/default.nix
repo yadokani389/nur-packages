@@ -14,13 +14,13 @@
 }:
 
 let
-  version = "unstable-2026-03-19";
+  version = "unstable-2026-04-12";
 
   src = fetchFromGitHub {
     owner = "yadokani389";
     repo = "karukan";
-    rev = "f765e34d59327e040f4de77f4a8e1773e7a35a64";
-    hash = "sha256-D2QE2B/NTwz2dxa+TSfKFExZbNZ2IurTmLZPMcJ4KnA=";
+    rev = "7ec898b881da7d6bbb7d5661b68caae76bf51fdb";
+    hash = "sha256-aiTZgwnpLnPatTtjLK7UXRRXRp0uz9ntHtp5skS0tf0=";
   };
 
   linderaVersion =
@@ -41,7 +41,7 @@ let
     pname = "karukan-im-rust";
     inherit version src;
 
-    cargoLock.lockFile = "${src}/Cargo.lock";
+    cargoHash = "sha256-14PvVw4iiqVqHvM04JnMwCPnMzPSGbmKrpJQfpyRn74=";
 
     nativeBuildInputs = [
       pkg-config
