@@ -4,23 +4,26 @@
   stdenv,
   pkg-config,
   cmake,
-  openssl,
+  shaderc,
   llvmPackages,
+  openssl,
+  vulkan-headers,
+  vulkan-loader,
+  libxkbcommon,
   extra-cmake-modules,
   fcitx5,
-  libxkbcommon,
   fetchFromGitHub,
   fetchurl,
 }:
 
 let
-  version = "unstable-2026-04-12";
+  version = "unstable-2026-04-13";
 
   src = fetchFromGitHub {
     owner = "yadokani389";
     repo = "karukan";
-    rev = "7ec898b881da7d6bbb7d5661b68caae76bf51fdb";
-    hash = "sha256-aiTZgwnpLnPatTtjLK7UXRRXRp0uz9ntHtp5skS0tf0=";
+    rev = "ab75c6e12476303f4fb2d168105d0be37c3b54e2";
+    hash = "sha256-qyjjhfUhiSdNngxMKKvPZ65HfXUtedXDHRJ+OmzfliQ=";
   };
 
   linderaVersion =
@@ -46,6 +49,7 @@ let
     nativeBuildInputs = [
       pkg-config
       cmake
+      shaderc
       rustPlatform.bindgenHook
       llvmPackages.libclang
     ];
@@ -53,6 +57,8 @@ let
     buildInputs = [
       openssl
       libxkbcommon
+      vulkan-headers
+      vulkan-loader
     ];
 
     LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";
