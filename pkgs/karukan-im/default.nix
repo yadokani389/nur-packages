@@ -14,16 +14,17 @@
   fcitx5,
   fetchFromGitHub,
   fetchurl,
+  vulkanSupport ? false,
 }:
 
 let
-  version = "unstable-2026-04-13";
+  version = "unstable-2026-04-14";
 
   src = fetchFromGitHub {
     owner = "yadokani389";
     repo = "karukan";
-    rev = "ab75c6e12476303f4fb2d168105d0be37c3b54e2";
-    hash = "sha256-qyjjhfUhiSdNngxMKKvPZ65HfXUtedXDHRJ+OmzfliQ=";
+    rev = "41f902392f957dea63af5108bbbc51774d6076be";
+    hash = "sha256-cYhKaOmvBZx8PtQCnp7jU/bkWAmakYXhJuG7Euks18M=";
   };
 
   linderaVersion =
@@ -49,14 +50,16 @@ let
     nativeBuildInputs = [
       pkg-config
       cmake
-      shaderc
       rustPlatform.bindgenHook
       llvmPackages.libclang
-    ];
+    ]
+    ++ lib.optional vulkanSupport shaderc;
 
     buildInputs = [
       openssl
       libxkbcommon
+    ]
+    ++ lib.optionals vulkanSupport [
       vulkan-headers
       vulkan-loader
     ];
@@ -67,6 +70,8 @@ let
       "-p"
       "karukan-im"
     ];
+
+    buildFeatures = lib.optional vulkanSupport "gpu-vulkan";
 
     doCheck = false;
 
