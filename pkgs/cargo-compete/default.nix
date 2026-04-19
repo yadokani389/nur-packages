@@ -8,16 +8,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "cargo-compete";
-  version = "0.10.7";
+  version = "unstable-2026-04-19";
 
   src = fetchFromGitHub {
-    owner = "qryxip";
+    owner = "yadokani389";
     repo = pname;
-    rev = "v${version}";
-    hash = "sha256-qlRVHSUVOqdTx4H3pE19Fy634742veTisHm6IqfKBUQ=";
+    rev = "fdca38e9a78825cff0887981eb7a16b5b9d35081";
+    hash = "sha256-BhmWrunYqipzT8FcYRhM3PJ2dYIOIczm6pVOG55UNpA=";
   };
 
-  cargoHash = "sha256-lid1tyR8Y6lvjpeGJ4vGzqDTY6V2y/5rL9fGyjyF3yw=";
+  cargoHash = "sha256-S7H3+i4S+mBoTtHLJqSdijJ408qG4sgOtu6uz3hQOkQ=";
 
   nativeBuildInputs = [ pkg-config ];
   buildInputs = [ openssl ];
