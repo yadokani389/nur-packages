@@ -22,6 +22,7 @@
   fcitx5-hazkey = pkgs.callPackage ./pkgs/fcitx5-hazkey { };
   hazkey-zenzai = pkgs.callPackage ./pkgs/hazkey-zenzai { };
   karukan-im = pkgs.callPackage ./pkgs/karukan-im { };
+  karukan-im-gpu = pkgs.callPackage ./pkgs/karukan-im { vulkanSupport = true; };
   sptlrx-ex = pkgs.callPackage ./pkgs/sptlrx-ex { };
   textlint-plugin-typst = pkgs.callPackage ./pkgs/textlint-plugin-typst { };
   pahcer = pkgs.callPackage ./pkgs/pahcer { };
