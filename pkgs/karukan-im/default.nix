@@ -10,7 +10,7 @@
   vulkan-headers,
   vulkan-loader,
   libxkbcommon,
-  extra-cmake-modules,
+  kdePackages,
   fcitx5,
   fetchFromGitHub,
   fetchurl,
@@ -101,7 +101,7 @@ stdenv.mkDerivation {
   nativeBuildInputs = [
     cmake
     pkg-config
-    extra-cmake-modules
+    kdePackages.extra-cmake-modules
   ];
 
   buildInputs = [
