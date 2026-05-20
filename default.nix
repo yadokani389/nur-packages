@@ -26,6 +26,7 @@
   sptlrx-ex = pkgs.callPackage ./pkgs/sptlrx-ex { };
   textlint-plugin-typst = pkgs.callPackage ./pkgs/textlint-plugin-typst { };
   pahcer = pkgs.callPackage ./pkgs/pahcer { };
+  ts-send = pkgs.callPackage ./pkgs/ts-send { };
 
   # vim
   lsp-endhints = pkgs.callPackage ./pkgs/lsp-endhints { };
