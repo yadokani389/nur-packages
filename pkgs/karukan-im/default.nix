@@ -18,13 +18,13 @@
 }:
 
 let
-  version = "unstable-2026-05-10";
+  version = "0-unstable-2026-05-24";
 
   src = fetchFromGitHub {
     owner = "yadokani389";
     repo = "karukan";
-    rev = "7b1b7338163b0c53042d3ff271725552df4d29ca";
-    hash = "sha256-FqyVjFyv6jFu+YUjIIexC0kWzT171lhiwmWmgRliPBI=";
+    rev = "6acdf8b1fdc13d03403e663c409dae3802c09c6d";
+    hash = "sha256-nZehmgZF2X1MX5MUCI/TLUOw0kIje35zqwwfcqmNOQg=";
   };
 
   linderaVersion =
