@@ -6,13 +6,13 @@
 
 vimUtils.buildVimPlugin {
   pname = "vim-translator";
-  version = "unstable-2023-05-25";
+  version = "unstable-2026-08-23";
 
   src = fetchFromGitHub {
     owner = "voldikss";
     repo = "vim-translator";
-    rev = "6f0639c6d471a3a90ac19db96e1e379c030f74e3";
-    hash = "sha256-ow5axYMtH433hXwYF5Oz3wWT/24VUHpALrH+Phlwk90=";
+    rev = "67457d5ab92a9d022f466df7e4a578a129207aa2";
+    hash = "sha256-mcuAQbHYe41NWab+hA+XLeqhSGH1ORchF4mWNvnlve4=";
   };
 
   meta = with lib; {

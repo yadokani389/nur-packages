@@ -6,13 +6,13 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "sptlrx-ex";
-  version = "0.1.0";
+  version = "unstable-2026-04-30";
 
   src = fetchFromGitHub {
     owner = "yadokani389";
     repo = pname;
-    rev = "v${version}";
-    hash = "sha256-kEi2pnzuUyWx+plKjw0ULSHbt0/+unnLM6iY1N7kwl8=";
+    rev = "61bf347bfaaa602d6573c045545a03fd9a24925d";
+    hash = "sha256-t7T7xKfPlyrGFCGiOM6P9fckmmxDEwQgrXPvcXcGLiI=";
   };
 
   cargoHash = "sha256-v4nWSGUv6rkLtZGIj8QmTJRerKfgQnOb/OrIhq7YyNw=";

@@ -6,16 +6,16 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "pahcer";
-  version = "0.3.1";
+  version = "0.4.0";
 
   src = fetchFromGitHub {
     owner = "terry-u16";
     repo = "pahcer";
     tag = "v${version}";
-    hash = "sha256-LNQsmAvoAbWipdI9MZfeZfQ8826Dz0EzwjvHiICfFec";
+    hash = "sha256-y+BPwiqCSRavk7QtatDGzEtyDbfvx8fZ97ABtLWoyv0=";
   };
 
-  cargoHash = "sha256-kcDBrcEkx+ouxB9wQZsQ7bGplaYQ56c7LS186DRCXDs";
+  cargoHash = "sha256-cuGm0LbxXfnyGUCWREVwg6PznaIIXgKaH0uxKYjp3XI=";
 
   meta = {
     description = "A tool to run tests for AtCoder Heuristic Contest (AHC)";
