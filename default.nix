@@ -1,11 +1,3 @@
-# This file describes your repository contents.
-# It should return a set of nix derivations
-# and optionally the special attributes `lib`, `modules` and `overlays`.
-# It should NOT import <nixpkgs>. Instead, you should take pkgs as an argument.
-# Having pkgs default to <nixpkgs> is fine though, and it lets you use short
-# commands such as:
-#     nix-build -A mypackage
-
 {
   pkgs ? import <nixpkgs> { },
 }:
@@ -19,10 +11,6 @@
   wallpaper_random = pkgs.callPackage ./pkgs/wallpaper_random { };
   wf-recorder-toggle = pkgs.callPackage ./pkgs/wf-recorder-toggle { };
   cargo-compete = pkgs.callPackage ./pkgs/cargo-compete { };
-  fcitx5-hazkey = pkgs.callPackage ./pkgs/fcitx5-hazkey { };
-  hazkey-zenzai = pkgs.callPackage ./pkgs/hazkey-zenzai { };
-  karukan-im = pkgs.callPackage ./pkgs/karukan-im { };
-  karukan-im-gpu = pkgs.callPackage ./pkgs/karukan-im { vulkanSupport = true; };
   sptlrx-ex = pkgs.callPackage ./pkgs/sptlrx-ex { };
   textlint-plugin-typst = pkgs.callPackage ./pkgs/textlint-plugin-typst { };
   pahcer = pkgs.callPackage ./pkgs/pahcer { };
