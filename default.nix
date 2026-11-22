@@ -21,3 +21,6 @@
   tiny-code-action-nvim = pkgs.callPackage ./pkgs/tiny-code-action-nvim { };
   vim-translator = pkgs.callPackage ./pkgs/vim-translator { };
 }
+// pkgs.lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
+  speech-cpp = pkgs.callPackage ./pkgs/speech-cpp { };
+}
